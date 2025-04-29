@@ -1,0 +1,9 @@
+__pycache__
+.vscode
+
+*.pt
+*.jpg
+*.png
+*.mp4
+
+!assets/*
