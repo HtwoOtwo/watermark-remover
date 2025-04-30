@@ -1,4 +1,9 @@
 # Watermark Remover
+<p align="center">
+  <a href="https://huggingface.co/spaces/Gezhiwa/fast-object-remover">
+    <img alt="HuggingFace Spaces" src="https://img.shields.io/badge/%F0%9F%A4%97%20HuggingFace-Spaces-blue" />
+  </a>
+</p>
 
 ![alt text](assets/image.png)
 ## Install & Run
