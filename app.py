@@ -1,6 +1,6 @@
-import time
 import os
 import subprocess
+import time
 from threading import Lock, Thread
 
 import cv2
@@ -110,6 +110,11 @@ class ProcessManager:
         self.frames = None
         self.fps = None
 
+    def reset(self):
+        self.mask = None
+        self.frames = None
+        self.fps = None
+
     def load_video(self, video):
         cap = cv2.VideoCapture(video)
         # convert video to frames
@@ -187,6 +192,13 @@ class ProcessManager:
 
 manager = ProcessManager()
 
+
+def reset_manager():
+    global manager
+    manager.reset()
+    return None, None, None
+
+
 with gr.Blocks() as demo:
     with gr.Column():
         with gr.Row(equal_height=True):
@@ -208,11 +220,21 @@ with gr.Blocks() as demo:
         fn=manager.load_video, inputs=[video_input], outputs=[image_input]
     )
     video_input.clear(
-        fn=lambda: (None, None, None),
+        fn=reset_manager,
         inputs=[],
         outputs=[image_input, image_result, video_result],
     )
-    image_input.clear(fn=lambda: None, inputs=[], outputs=[image_result])
+    image_input.clear(
+        fn=reset_manager, inputs=[], outputs=[image_input, image_result, video_result]
+    )
+    video_input.change(
+        fn=reset_manager,
+        inputs=[],
+        outputs=[image_input, image_result, video_result],
+    )
+    image_input.change(
+        fn=reset_manager, inputs=[], outputs=[image_input, image_result, video_result]
+    )
 
 
 # Launch the app
