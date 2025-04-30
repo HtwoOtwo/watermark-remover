@@ -5,7 +5,7 @@
 - `git clone https://github.com/HtwoOtwo/watermark-remover.git`
 - `pip install -r requirements.txt`
 - `cd watermark-remover`
-- `python main.py`
+- `python app.py`
 
 ## Process Image
 Upload the image, use the brush to paint over the watermark, and click the "Process" button.
